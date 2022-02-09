@@ -22,16 +22,15 @@ const buildPosts = (blogPosts) => {
       const postLink = `/post.html?id=${id}`;
       blogPostContent += `
       <a class="post-link" href="${postLink}">
-        <article class="post">               
+        <article class="post">
             <div class="post-image" style="background-image: url(${postImage})"></div>
             <div class="post-information">
-                <div class="post-id">${postDate}</div>          
+                <div class="post-id">${postDate}</div>
                 <div class="post-title"><h4>${title}</h4></div>
-                <div class="post-content">${content}</div> 
+                <div class="post-content">${content}</div>
             </div>
         </article>
       `;
    }
    document.querySelector('.blog-posts').innerHTML = blogPostContent;
-   
 };
