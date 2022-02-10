@@ -26,14 +26,16 @@ const getExt = (mimeType) => {
 
 const upload = multer({ storage: storage });
 
+// middleware
 app.use((req, res, next) => {
    res.setHeader('Access-Control-Allow-Origin', '*');
    next();
 });
-
+app.use(express.static('./public'));
 app.use(express.json());
-
 app.use('/uploads', express.static('uploads'));
+
+// Routes
 
 app.get('/api/posts', (req, res) => {
    res.status(200).send(postsData.readData());
@@ -50,7 +52,7 @@ app.get('/api/posts/:id', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-   res.send('Hello World!');
+   res.status(200).send(indexHtml);
 });
 
 app.post('/api/posts', upload.single('post-image'), (req, res) => {
@@ -66,6 +68,6 @@ app.post('/api/posts', upload.single('post-image'), (req, res) => {
    res.status(202).send('okay');
 });
 
-app.listen(process.env.PORT || 3000, () => {
-   console.log('listening on port 3000');
+app.listen(process.env.PORT || 3001, () => {
+   console.log('listening on port 3001');
 });
